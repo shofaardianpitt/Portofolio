@@ -30,9 +30,9 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="fixed top-6 inset-x-0 z-50 flex justify-center items-center px-4 pointer-events-none">
-      {/* Opacity bg ditipiskan ke /35 agar konten belakang agak kelihatan */}
-      <nav className="pointer-events-auto relative flex items-center gap-1 sm:gap-2 px-2.5 py-2 rounded-full border border-white/10 bg-[#0d0d0f]/35 backdrop-blur-md shadow-2xl transition-all duration-300">
+    <header className="fixed top-4 sm:top-6 inset-x-0 z-50 flex justify-center items-center px-3 sm:px-4 pointer-events-none">
+      {/* Container Nav dengan scroll horizontal untuk HP */}
+      <nav className="pointer-events-auto relative flex items-center gap-1 sm:gap-2 px-2.5 py-1.5 sm:py-2 rounded-full border border-white/10 bg-[#0d0d0f]/35 backdrop-blur-md shadow-2xl transition-all duration-300 max-w-full overflow-x-auto no-scrollbar whitespace-nowrap touch-pan-x">
         {NAV_ITEMS.map((item, idx) => {
           const isHovered = hoveredIdx === idx;
           return (
@@ -42,7 +42,7 @@ export const Navbar = () => {
               onClick={(e) => handleScroll(e, item.href)}
               onMouseEnter={() => setHoveredIdx(idx)}
               onMouseLeave={() => setHoveredIdx(null)}
-              className="relative isolate px-4 py-2 text-xs sm:text-sm font-medium transition-colors duration-300 rounded-full select-none cursor-pointer"
+              className="relative isolate shrink-0 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-medium transition-colors duration-300 rounded-full select-none cursor-pointer"
             >
               {/* Highlight Pill Emerald Green Glowing */}
               {isHovered && (
@@ -79,3 +79,5 @@ export const Navbar = () => {
     </header>
   );
 };
+
+export default Navbar;

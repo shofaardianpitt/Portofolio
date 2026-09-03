@@ -14,7 +14,7 @@ body {
   font-family: var(--font-space-grotesk), system-ui, sans-serif;
   overflow-x: hidden;
 
-  /* Sembunyikan scrollbar */
+  /* Sembunyikan scrollbar utama */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -22,4 +22,13 @@ body {
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
+}
+
+/* Sembunyikan scrollbar untuk elemen khusus (seperti Navbar) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

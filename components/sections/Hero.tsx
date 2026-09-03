@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { CONTACTS } from '../data';
-import { TypewriterHeading } from '../ui/TypewriterHeading';
+import WarpText from '../ui/WarpText';
 import ShapeBlur from '../ui/ShapeBlur';
 import BorderGlow from '../ui/BorderGlow';
 
@@ -29,12 +29,10 @@ export const Hero = () => {
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    // 3D Tilt
     const tiltX = -(y - rect.height / 2) * 0.08;
     const tiltY = (x - rect.width / 2) * 0.08;
     setRotate({ x: tiltX, y: tiltY });
 
-    // Interactive Spotlight Position
     const posX = (x / rect.width) * 100;
     const posY = (y / rect.height) * 100;
     setMousePos({ x: posX, y: posY });
@@ -50,7 +48,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="min-h-screen w-full flex items-center justify-center pt-24 pb-12 px-4 md:px-8 relative overflow-hidden bg-transparent">
+    <section className="min-h-screen w-full flex items-center justify-center pt-20 pb-12 px-4 md:px-8 relative overflow-hidden bg-transparent">
       {/* Ambient Background */}
       <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-purple-500/[0.08] rounded-full blur-[140px] pointer-events-none" />
 
@@ -58,7 +56,7 @@ export const Hero = () => {
         initial={{ opacity: 0, y: 15 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="max-w-5xl w-full mx-auto flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16 z-10 text-center md:text-left"
+        className="max-w-5xl w-full mx-auto flex flex-col md:flex-row items-center justify-center gap-8 md:gap-14 z-10 text-center md:text-left"
       >
         {/* Frame Profil */}
         <motion.div
@@ -70,7 +68,6 @@ export const Hero = () => {
           style={{ transformStyle: 'preserve-3d' }}
           className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 flex items-center justify-center shrink-0 group cursor-pointer"
         >
-          {/* Canvas WebGL ShapeBlur Background */}
           <div className="absolute -inset-20 md:-inset-28 z-0 pointer-events-none">
             <ShapeBlur
               variation={0}
@@ -82,28 +79,25 @@ export const Hero = () => {
             />
           </div>
 
-          {/* BORDER GLOW SUPER TERANG & NEON (Cyber Violet & Electric Cyan) */}
           <BorderGlow
-            edgeSensitivity={15}             /* Sensitivitas tinggi biar pendaran cepat terpicu */
-            glowColor="280 100 75"           /* HSL: Neon Violet Super Terang */
+            edgeSensitivity={15}
+            glowColor="280 100 75"
             backgroundColor="#0d0d0f"
             borderRadius={40}
-            glowRadius={50}                  /* Pendaran outer glow makin tebal & luas */
-            glowIntensity={2.5}              /* Intensitas dinaikkan dari 1.2 -> 2.5 (Super Bright) */
-            coneSpread={40}                  /* Sudut sorotan cahaya diperluas */
+            glowRadius={50}
+            glowIntensity={2.5}
+            coneSpread={40}
             animated={false}
-            colors={['#c084fc', '#e879f9', '#38bdf8', '#818cf8']} /* Gradient Violet, Pink, Sky Blue, Magenta */
-            fillOpacity={0.75}               /* Pendaran tepi dalam lebih pekat */
+            colors={['#c084fc', '#e879f9', '#38bdf8', '#818cf8']}
+            fillOpacity={0.75}
             className="w-full h-full z-10"
           >
-            {/* Foto Profil Original */}
             <img
               src="/ShofaArdianPittProfile.jpeg"
               alt="Shofa Ardian Palwadi"
               className="w-full h-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
             />
 
-            {/* LIGHT SWEEP / SHINE BEAM */}
             <motion.div
               animate={{
                 x: ['-180%', '280%'],
@@ -122,7 +116,6 @@ export const Hero = () => {
               }}
             />
 
-            {/* Interactive Cursor Spotlight Glow */}
             <div
               className="absolute inset-0 z-10 pointer-events-none transition-opacity duration-300 bg-gradient-to-br from-white/20 via-purple-500/20 to-transparent"
               style={{
@@ -135,29 +128,49 @@ export const Hero = () => {
         </motion.div>
 
         {/* Teks */}
-        <div className="flex flex-col items-center md:items-start flex-1">
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-xs font-semibold tracking-wider mb-3 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
-            <span className="relative flex h-2.5 w-2.5">
+        <div className="flex flex-col items-center md:items-start flex-1 w-full">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/15 border border-amber-500/40 text-amber-300 text-[11px] font-semibold tracking-wider mb-1 shadow-[0_0_15px_rgba(245,158,11,0.2)]">
+            <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-400 shadow-[0_0_8px_#f59e0b]" />
             </span>
             STILL LEARNING
           </div>
 
-          <TypewriterHeading
-            text="Shofa Ardian Palwadi"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-[#ecece9] mb-2 min-h-[1.2em]"
-          />
+          {/* WarpText Nama */}
+          <div className="w-full max-w-2xl my-0 flex justify-center md:justify-start">
+            <WarpText
+              text="Shofa Ardian Palwadi"
+              color="#ecece9"
+              warpStrength={0.06}
+              warpScale={1.5}
+              speed={0.4}
+              pointerInfluence={0.35}
+              pointerStrength={0.3}
+              refraction={0.015}
+              ripple
+              fontSize="clamp(2.0rem, 4vw, 3.2rem)"
+              fontWeight={800}
+              fontFamily="inherit"
+              letterSpacing={-0.03}
+              lineHeight={1.0}
+              style={{ height: '80px', width: '100%' }}
+            />
+          </div>
 
-          <p className="text-xs sm:text-sm text-emerald-400/90 font-mono tracking-[0.25em] uppercase font-semibold mb-4">
+          {/* Subtitle */}
+          <p className="text-xs sm:text-sm text-emerald-400/90 font-mono tracking-[0.2em] uppercase font-semibold mt-1 mb-3">
             Web & Mobile Developer
           </p>
 
-          <p className="text-sm md:text-base text-[#ecece9]/70 leading-relaxed mb-6 max-w-xl font-normal">
+          {/* Deskripsi */}
+          <p className="text-sm md:text-base text-[#ecece9]/75 leading-relaxed mb-5 max-w-xl font-normal">
             Mahasiswa D4 Teknologi Rekayasa Perangkat Lunak Politeknik Negeri Bali yang berfokus di ruang lingkup pembuatan aplikasi Web & Mobile modern.
           </p>
 
-          <div className="flex flex-wrap justify-center md:justify-start gap-3 mb-7">
+          {/* Social Links */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-2.5 mb-5">
             {CONTACTS.map((item) => {
               const Icon = item.icon;
               return (
@@ -166,20 +179,21 @@ export const Hero = () => {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2.5 px-4 py-2 text-xs font-medium rounded-xl bg-white/[0.04] border border-white/10 hover:bg-emerald-500 hover:text-black hover:border-emerald-400 transition-all duration-300 text-[#ecece9] shadow-sm hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] group"
+                  className="flex items-center gap-2 px-3.5 py-1.5 text-xs font-medium rounded-xl bg-white/[0.04] border border-white/10 hover:bg-emerald-500 hover:text-black hover:border-emerald-400 transition-all duration-300 text-[#ecece9] shadow-sm hover:shadow-[0_0_20px_rgba(16,185,129,0.3)] group"
                 >
-                  <Icon className="w-4 h-4 transition-transform group-hover:scale-110" />
+                  <Icon className="w-3.5 h-3.5 transition-transform group-hover:scale-110" />
                   <span>{item.label}</span>
                 </a>
               );
             })}
           </div>
 
-          <div className="flex flex-wrap justify-center md:justify-start gap-2 max-w-lg">
+          {/* Skills Badges */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-1.5 max-w-lg">
             {CATEGORIZED_SKILLS.map((skill) => (
               <span
                 key={skill.name}
-                className={`px-3 py-1 text-[11px] font-mono rounded-lg border backdrop-blur-md transition-all hover:scale-105 cursor-default ${skill.color}`}
+                className={`px-2.5 py-1 text-[11px] font-mono rounded-lg border backdrop-blur-md transition-all hover:scale-105 cursor-default ${skill.color}`}
               >
                 {skill.name}
               </span>

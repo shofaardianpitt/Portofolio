@@ -1,10 +1,11 @@
 import type { Metadata, Viewport } from "next";
-import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Montserrat, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+// Inisialisasi Montserrat
+const montserrat = Montserrat({
   subsets: ["latin"],
+  display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -12,7 +13,6 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
 });
 
-// Meta data SEO Lengkap
 export const metadata: Metadata = {
   title: "Shofa Ardian Palwadi | Web & Mobile Developer",
   description:
@@ -32,11 +32,10 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.svg",
   },
-  // Tampilan saat link di-share ke WhatsApp, LinkedIn, Discord, dsb.
   openGraph: {
     type: "website",
     locale: "id_ID",
-    url: "https://shofa-ardian.vercel.app", // Sesuaikan jika sudah ada domain/link Vercel
+    url: "https://ardianpitt-portofolio.vercel.app",
     title: "Shofa Ardian Palwadi | Web & Mobile Developer",
     description:
       "Portofolio Shofa Ardian Palwadi - Mahasiswa D4 Rekayasa Perangkat Lunak PNB, Web & Mobile Developer.",
@@ -59,7 +58,6 @@ export const metadata: Metadata = {
   },
 };
 
-// Konfigurasi Viewport & Theme Color Browser
 export const viewport: Viewport = {
   themeColor: "#111113",
   width: "device-width",
@@ -74,9 +72,10 @@ export default function RootLayout({
   return (
     <html
       lang="id"
-      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
+      className={`${jetbrainsMono.variable} h-full antialiased scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col bg-[#111113] text-[#ecece9] font-sans">
+      {/* Pasang montserrat.className langsung di class body */}
+      <body className={`${montserrat.className} min-h-full flex flex-col bg-[#111113] text-[#ecece9]`}>
         {children}
       </body>
     </html>
